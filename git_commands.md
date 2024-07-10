@@ -143,3 +143,51 @@ ___
    ```bash
    git cherry-pick <hash-do-commit>
    ```
+___
+
+## git fetch
+
+- Buscar alterações de outros repositórios
+```
+git fetch
+```
+
+O comando `git fetch` é usado para buscar alterações de um repositório remoto e atualizá-las no repositório local, sem modificar o diretório de trabalho atual. 
+Uma explicação resumida com exemplos:
+
+1. **Buscando Alterações**:
+   - O `git fetch` recupera commits, arquivos, branches e tags de um repositório remoto.
+   - Ele atualiza as referências locais para refletir as mudanças no remoto, mas não afeta o diretório de trabalho nem a área de staging.
+
+2. **Exemplo**:
+   - Suponha que você esteja trabalhando em um projeto com uma equipe e um colega faça um novo commit no repositório remoto.
+   - Você pode usar `git fetch` para atualizar seu repositório local com esse commit.
+   - Em seguida, inspecione as alterações antes de decidir se deseja mesclá-las em seu branch atual.
+
+- Alguns exemplos de uso do comando `git fetch`:
+
+1. **Buscar as últimas alterações do repositório remoto padrão ("upstream")** (se configurado):
+   ```
+   git fetch
+   ```
+
+2. **Buscar novos branches de um repositório remoto específico ("upstream")**:
+   ```
+   git fetch nome_do_repositorio_remoto
+   ```
+
+3. **Buscar as últimas alterações de todos os repositórios remotos ("upstream")**:
+   ```
+   git fetch --all
+   ```
+
+4. **Buscar também as tags do repositório remoto ("upstream")**:
+   ```
+   git fetch --tags
+   ```
+
+5. **Excluir referências locais a branches remotos que foram excluídos no repositório remoto**:
+   ```
+   git fetch --prune
+   ```
+
