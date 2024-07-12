@@ -54,7 +54,7 @@ git config --global user.name  "auruser"
 git config --global user.email "auruser@aur.org"
 ```
 
-5. **(EM SISTEMA, Opcional).**Configurando e armazenando a senha
+5. **(EM SISTEMA, Opcional).** Configurando e armazenando a senha
 
 Você pode evitar que o Git solicite sua senha configurando o armazenamento de credenciais em cache.  
 Isso permite que o Git use automaticamente seu token de acesso pessoal armazenado em cache quando você efetua pull ou push de um repositório usando HTTPS.  
