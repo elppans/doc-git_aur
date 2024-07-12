@@ -4,7 +4,7 @@
 
 ___
 
-Criar/Clonar o repositório
+Criar/Clonar o repositório (SSH)
 
 ```bash
 git clone ssh://aur@aur.archlinux.org/pacoteaur.git
