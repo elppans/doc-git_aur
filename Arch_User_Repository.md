@@ -4,8 +4,8 @@
 
 ###### Uma lista de comandos git utilizado nos testes  
 
-> **`git ls-files`**: Lista os arquivos sob controle de versão.  
-> **`git remote remove <nome_do_repositório>`**: Remove um repositório remoto.  
+> **`git ls-files`**: Lista os arquivos sob controle de versão, que estão no git.  
+> **`git remote remove <nome_do_repositório>`**: Remove um repositório remoto (branch).  
 > **`git remote -v`**: Lista os repositórios remotos configurados.  
 > **`git branch -r`**: Lista as referências remotas (branches).  
 > **`git status`**: Mostra o estado da árvore de trabalho.  
@@ -49,31 +49,16 @@ ssh-keygen -f ~/.ssh/aur
 ```bash
 cat ~/.ssh/aur.pub
 ```
-
-## Criação e configuração do pacote AUR  
-
-1. Criar diretório de trabalho  
-
-```bash
-mkdir -p $HOME/build/custombuild
-cd $HOME/build/custombuild
-```
-
-2. Criar e acessar diretório do pacote AUR  
-
-```bash
-git clone ssh://aur@aur.archlinux.org/pacoteaur.git
-cd pacoteaur
-```
-
-3. Faça configuração global para seu usuário  
+4. Faça configuração global para seu usuário  
 
 ```bash
 git config --global user.name  "auruser"
 git config --global user.email "auruser@aur.org"
 ```
 
-3.1. Você pode evitar que o Git solicite sua senha configurando o armazenamento de credenciais em cache.  
+5. Configurando e armazenando a senha (Opcional)
+
+Você pode evitar que o Git solicite sua senha configurando o armazenamento de credenciais em cache.  
 Isso permite que o Git use automaticamente seu token de acesso pessoal armazenado em cache quando você efetua pull ou push de um repositório usando HTTPS.  
 Opções:  
 
@@ -97,24 +82,27 @@ Opções:
   
   - Suas credenciais ficarão armazenadas permanentemente.  
 
-3.2. Para configurar suas credenciais no Git. Primeiro, abra o terminal e execute os seguintes comandos:  
-
-- Configure seu nome de usuário e e-mail globalmente:  
-  
-  ```bash
-  git config --global user.name "auruser"
-  git config --global user.email "auruser@aur.org"
-  ```
-
-- Agora, configure o armazenamento permanente das credenciais:  
-  
-  ```bash
-  git config --global credential.helper store
-  ```
-
-- Quando você fizer `git pull` ou `git push` pela primeira vez, o Git solicitará suas credenciais. Insira seu token de acesso pessoal (ou senha) quando solicitado.  
+Quando você fizer `git pull` ou `git push` pela primeira vez, o Git solicitará suas credenciais. Insira seu token de acesso pessoal (ou senha) quando solicitado.  
   Agora, o Git usará essas informações automaticamente para autenticação.  
-4. Crie e configure os arquivos .gitignore e PKGBUILD  
+___
+
+# Criação e configuração do pacote AUR  
+
+1. Criar diretório de trabalho  
+
+```bash
+mkdir -p $HOME/build/custombuild
+cd $HOME/build/custombuild
+```
+
+2. Criar e acessar diretório do pacote AUR  
+
+```bash
+git clone ssh://aur@aur.archlinux.org/pacoteaur.git
+cd pacoteaur
+```
+
+3. Crie e configure os arquivos .gitignore e PKGBUILD  
 
 Sempre antes de upar a atualização, recrie um novo .SRCINFO com o comando makepkg  
 Então adicione, faça um commit e depois faça o upload das modificações  
@@ -125,31 +113,34 @@ git add PKGBUILD .SRCINFO .gitignore
 git commit -m "Create Package pacoteaur"
 git push
 ```
+___
 
 ## Atualização do pacote AUR  
 
-> Eu clonei meu pacote novamente, pois meu HD onde estava o build bateu as botas.  
-> Então se seu pacote ainda continua no seu HD após a criação, talvez possa pular direto para a edição dos arquivos.  
+1. Clonar o repositório e entrar no diretório:  
+>Se não tem mais o repositório local e/ou precisa baixar do repositório novamente  
 
-1. Clonar e entrar no repositório  
-
-```bash
-git clone https://aur.archlinux.org/pacoteaur.git && cd pacoteaur
+```
+git clone ssh://aur@aur.archlinux.org/pacoteaur.git && cd pacoteaur
 ```
 
-2. Adicionar o repositório remoto como 'pacoteaur'  
+2. Adicionar um remoto com opções específicas:
 
-```bash
+>-f: Faz com que o Git execute um fetch imediatamente após adicionar o remoto.
+>-t master: Indica que apenas a branch master deve ser rastreada do remoto.
+>-m master: Define a branch master como a branch padrão para o remoto adicionado.
+
+```
 git remote add -f -t master -m master pacoteaur ssh://aur@aur.archlinux.org/pacoteaur.git
 ```
 
-3. Configurar a referência remota padrão para push  
+3. Criar e mudar para um novo branch:
 
 ```bas
-git push --set-upstream pacoteaur HEAD
+git switch -c pacoteaur pacoteaur/master
 ```
 
-4. Edite o necessário e faça como a opção 4 do ítem anterior  
+4. Edite o necessário
 
 Sempre que atualizar o pacote AUR, não pode esquecer de editar o parâmetro `pkgver` e o `pkgrel`  
 
@@ -163,9 +154,9 @@ Se receber a seguinte mensagem ao fazer `git commit -m ...`:
 >   
 > ....  
 >   
-> fatal: unable to auto-detect email address (got 'elppans@DarkElven.(none)')  
+> fatal: unable to auto-detect email address (got 'auruser@aur.(none)')  
 
-Faça como na opção 3 para logar na sua conta AUR e depois continue fazendo commit novamente e finalmente, o pull.  
+Logar na sua conta AUR e depois continue fazendo commit novamente e finalmente, o pull.  
 
 ## RESUMO E EXEMPLOS  
 
@@ -178,8 +169,8 @@ cd ~/build
 mv pacoteaur pacoteaur.teste
 git clone ssh://aur@aur.archlinux.org/pacoteaur.git
 cd pacoteaur
-git config --global user.name  "auruser"
-git config --global user.email "auruser@aur.org"
+git remote add -f -t master -m master kde-service-menu-reimage-mod ssh://aur@aur.archlinux.org/pacoteaur.git
+git switch -c pacoteaur pacoteaur/master
 cp -av ../pacoteaur.teste/* .
 cp -av ../pacoteaur.teste/.gitignore .
 makepkg --printsrcinfo > .SRCINFO
