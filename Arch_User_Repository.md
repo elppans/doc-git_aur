@@ -2,8 +2,6 @@
 
 - Comandos GIT úteis  
 
-###### Uma lista de comandos git utilizado nos testes  
-
 > **`git ls-files`**: Lista os arquivos sob controle de versão, que estão no git.  
 > **`git remote remove <nome_do_repositório>`**: Remove um repositório remoto (branch).  
 > **`git remote -v`**: Lista os repositórios remotos configurados.  
@@ -16,7 +14,7 @@
 > **`git add`**: Adiciona as alterações no diretório de trabalho à área de staging.  
 > **`git commit`**: Cria um novo commit com as alterações da área de staging e uma mensagem de descrição.  
 
-## AUR, Conta de Mantenedor  
+## AUR, Conta  
 
 Será usado um nome de usuário, e-mail e nome de pacote ficticio, para poder enviar os exemplos.  
 Basta mudar eles para o seu uso.  
@@ -49,14 +47,14 @@ ssh-keygen -f ~/.ssh/aur
 ```bash
 cat ~/.ssh/aur.pub
 ```
-4. Faça configuração global para seu usuário  
+4. **(EM SISTEMA).** Faça configuração global para seu usuário  
 
 ```bash
 git config --global user.name  "auruser"
 git config --global user.email "auruser@aur.org"
 ```
 
-5. Configurando e armazenando a senha (Opcional)
+5. **(EM SISTEMA, Opcional).**Configurando e armazenando a senha
 
 Você pode evitar que o Git solicite sua senha configurando o armazenamento de credenciais em cache.  
 Isso permite que o Git use automaticamente seu token de acesso pessoal armazenado em cache quando você efetua pull ou push de um repositório usando HTTPS.  
