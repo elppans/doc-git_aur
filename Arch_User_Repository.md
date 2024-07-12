@@ -125,7 +125,7 @@ git clone ssh://aur@aur.archlinux.org/pacoteaur.git && cd pacoteaur
 2. Adicionar um remoto com opções específicas:
 
 >-f: Faz com que o Git execute um fetch imediatamente após adicionar o remoto.
->-t master: Indica que apenas a branch master deve ser rastreada do remoto.
+>-t master: Indica que apenas a branch master deve ser rastreada do remoto.  
 >-m master: Define a branch master como a branch padrão para o remoto adicionado.
 
 ```
