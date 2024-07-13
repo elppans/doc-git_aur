@@ -1,7 +1,7 @@
 # Descrições dos parâmetros git
 
 1. **`git ls-files`**: Este comando lista os arquivos que estão sob controle de versão no Git. Ele exibe os nomes dos arquivos que fazem parte do índice (staging area) e também os que estão no diretório de trabalho. É útil para verificar quais arquivos estão sendo rastreados pelo Git.  
-2. **`git remote remove <nome_do_repositório>`**: Onde `<nome_do_repositório>` é o nome do repositório remoto que você deseja remover.  
+2. **`git remote remove <nome_do_repositório>`**: Onde `<nome_do_repositório>` é o nome do repositório remoto (**Branch**) que você deseja remover.  
 3. **`git remote -v`**: Esse comando lista os repositórios remotos configurados para o seu projeto Git. Ele exibe os URLs dos repositórios remotos, permitindo que você veja de onde você está buscando e para onde está enviando alterações.  
 4. **`git branch -r`**: O comando `git branch -r` lista as referências remotas (branches) disponíveis no repositório remoto. Isso inclui as branches que você ainda não possui localmente, mas que estão no servidor remoto.  
 5. **`git status`**: O `git status` mostra o estado atual da sua árvore de trabalho. Ele informa se há arquivos modificados, novos arquivos ou arquivos excluídos. Também exibe informações sobre a branch atual e se há alterações pendentes para commit.  
