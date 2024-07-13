@@ -1,7 +1,4 @@
 # Comandos GIT úteis
-
-## Uma lista de comandos git mais utilizados
-
 ___
 
 Criar/Clonar o repositório (SSH)
@@ -16,7 +13,7 @@ Clonar o repositório
 git clone https://aur.archlinux.org/pacoteaur.git
 ```
 
-- Configuração global para seu usuário
+- **Configuração global para seu usuário**
 1. Nome de usuário
 
 ```bash
@@ -28,7 +25,18 @@ git config --global user.name  "auruser"
 ```bash
 git config --global user.email "auruser@aur.org"
 ```
+- **Credenciais do usuário**
+1. Armazenamento temporário em cache (5 minutos (padrão)) **{OPCIONAL}**
 
+```bash
+git config credential.helper cache
+```
+
+2. Armazenamento permanente **{OPCIONAL}**
+
+```bas
+git config credential.helper store
+```
 ___
 
 Lista os arquivos sob controle de versão
@@ -67,7 +75,7 @@ Mostra as mudanças desde o último commit
 git show
 ```
 
-Envia commits para um repositório remot.
+Envia commits para um repositório remoto
 
 ```bash
 git push
@@ -93,26 +101,11 @@ git commit -m "Mensagem de modificação"
 
 ___
 
-Remove um repositório remoto
+Remove um repositório remoto (**Branch**)
 
 ```bash
 git remote remove <nome_do_repositório>
 ```
-
-___
-
-Armazenamento temporário em cache (5 minutos (padrão)) **{OPCIONAL}**
-
-```bash
-git config credential.helper cache
-```
-
-Armazenamento permanente **{OPCIONAL}**
-
-```bas
-git config credential.helper store
-```
-
 ___
 
 ### Mais alguns detalhes que podem ser úteis:
@@ -126,6 +119,8 @@ ___
    
    ```bash
    git stash save "Descrição da mudança"
+   ```
+   ```bash
    git stash apply  # Para recuperar as mudanças
    ```
 3. **`git diff`**: Exibe as diferenças entre o diretório de trabalho e a área de staging ou entre commits. Útil para verificar as alterações antes de fazer commit:
