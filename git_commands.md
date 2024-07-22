@@ -2,7 +2,8 @@
 ___
 
 Criar/Clonar o repositório (SSH)
-
+>Para clonar um repositório **privado**, os arquivos de chave (`id_rsa` e `id_rsa.pub`) devem ser copiados para o diretório `~/.ssh` do sistema alvo.
+>O mesmo só funciona com a clonagem via `ssh`, não `https`.  
 ```bash
 git clone ssh://aur@aur.archlinux.org/pacoteaur.git
 ```
