@@ -66,10 +66,6 @@ Se funcionar sem erro, você tá conectado com o remoto. 🎯
 
 ---
 
-Opa! Valeu por avisar, Marcelo — vamos terminar direitinho essa parte agora. 💪
-
----
-
 ### 📝 **2. Fazer commits com o usuário local:**
 
 Com o `.git/config` local definido, quando você der um commit, o Git já vai usar as credenciais específicas do repositório. Basta seguir o fluxo normal:
