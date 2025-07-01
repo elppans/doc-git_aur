@@ -41,7 +41,7 @@ Crie ou edite o arquivo `.git/config` dentro do repositório com algo assim:
 	merge = refs/heads/main
 [user]
 	name = seuusuario
-	mail = seuemail@mail.com
+	email = seuemail@mail.com
 ```
 
 Com esse `.git/config`, está tudo certo pra trabalhar com seu repositório do GitHub usando suas credenciais de trabalho **sem afetar o restante da máquina**.  
@@ -101,7 +101,57 @@ Assim você digita o token uma vez e pode dar push/pull durante os próximos 5 m
 
 ---
 
+## Falha de configuração "user.name" e "user.email"
+
+Valeu por compartilhar tudo certinho, Marcelo. Agora ficou claro o cenário. 👇
+
+---
+
+### 🧩 O que está pegando
+
+Mesmo com seu `.gitconfig` global configurado corretamente, o VSCodium está exibindo:
+
+> **"Verifique se você configurou 'user.name' e 'user.email' no git."**
+
+Esse alerta aparece porque **alguma operação Git no VSCodium não está conseguindo acessar ou detectar as configurações globais**. Isso pode rolar por alguns motivos:
+
+1. **Erro de digitação na global**  
+   Você usou:
+   ```bash
+   git config --global user.mail seuemail@email.com
+   ```
+   👉 A chave correta é `user.email` (e não `user.mail`).  
+   Isso significa que o Git **não sabe seu e-mail**, e por isso o VSCodium reclama.
+
+   ✅ Corrigindo:
+   ```bash
+   git config --global user.email seuemail@email.com
+   ```
+
+2. **Reinicie o VSCodium**  
+   Depois da correção acima, reinicie o VSCodium pra ele recarregar o ambiente e detectar a configuração nova.
+
+---
+
+### 🧪 Dica: conferir no terminal se está tudo certo
+
+Dentro do terminal do VSCodium (ou no shell normal), rode:
+
+```bash
+git config --global user.name
+git config --global user.email
+```
+
+🔁 Esperado:
+```
+seuusuario
+seuemail@email.com
+```
+
+---
+
 - Mais informações, acessar:  
 
+[1.6 Getting Started - First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)  
 [Clonando com as URLs de HTTPS](https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls)  
 [Mantendo seus personal access token seguros](https://docs.github.com/pt/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#keeping-your-personal-access-tokens-secure)  
